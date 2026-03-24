@@ -14,7 +14,9 @@
       {
         "title": "caret",
         "width": 800,
-        "height": 600
+        "height": 500,
+        "alwaysOnTop": true,
+        "backgroundColor": "#000000"
       }
     ],
     "security": {
