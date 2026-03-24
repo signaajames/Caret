@@ -32,3 +32,78 @@ html, body, #root {
 .editor-shell .monaco-editor {
   flex: 1;
 }
+
+.tab-bar {
+  display: flex;
+  align-items: center;
+  background: #050504;
+  border-bottom: 0.5px solid #2a2420;
+  flex-shrink: 0;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-family: "JetBrains Mono", monospace;
+  padding: 8px 14px;
+  color: #4a3e36;
+  border-right: 0.5px solid #1e1c18;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.tab.active {
+  color: #d4894a;
+  border-top: 1.5px solid #d4894a;
+  background: #080705;
+}
+
+.tab-close {
+  font-size: 14px;
+  color: #3a3228;
+  line-height: 1;
+  transition: color 0.15s ease;
+}
+
+.tab-close:hover {
+  color: #d4894a;
+}
+
+.tab-name {
+  flex: 1;
+}
+
+.tab-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d4894a;
+  flex-shrink: 0;
+}
+
+.tab-add {
+  padding: 8px 14px;
+  color: #3a3228;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.15s ease;
+  user-select: none;
+}
+
+.tab-add:hover {
+  color: #d4894a;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: #2a2420;
+  cursor: pointer;
+}
