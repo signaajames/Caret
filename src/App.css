@@ -38,7 +38,11 @@ html, body, #root {
   align-items: center;
   background: #050504;
   border-bottom: 0.5px solid #2a2420;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: 10px;
+  -webkit-app-region: no-drag;
 }
 
 .tab {
@@ -47,12 +51,13 @@ html, body, #root {
   gap: 8px;
   font-size: 12px;
   font-family: "JetBrains Mono", monospace;
-  padding: 8px 14px;
+  padding: 8px 12px;
   color: #4a3e36;
   border-right: 0.5px solid #1e1c18;
   cursor: pointer;
   user-select: none;
   transition: color 0.15s ease;
+  -webkit-app-region: no-drag;
 }
 
 .tab.active {
@@ -66,6 +71,7 @@ html, body, #root {
   color: #3a3228;
   line-height: 1;
   transition: color 0.15s ease;
+  -webkit-app-region: no-drag;
 }
 
 .tab-close:hover {
@@ -74,6 +80,7 @@ html, body, #root {
 
 .tab-name {
   flex: 1;
+  -webkit-app-region: no-drag;
 }
 
 .tab-dot {
@@ -82,15 +89,17 @@ html, body, #root {
   border-radius: 50%;
   background: #d4894a;
   flex-shrink: 0;
+  -webkit-app-region: no-drag;
 }
 
 .tab-add {
-  padding: 8px 14px;
+  padding: 6px 10px;
   color: #3a3228;
   cursor: pointer;
   font-size: 16px;
   transition: color 0.15s ease;
   user-select: none;
+  -webkit-app-region: no-drag;
 }
 
 .tab-add:hover {
@@ -106,4 +115,63 @@ html, body, #root {
   font-size: 12px;
   color: #2a2420;
   cursor: pointer;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #050504;
+  border-bottom: 0.5px solid #2a2420;
+  flex-shrink: 0;
+  -webkit-app-region: drag;
+}
+
+.window-control {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  -webkit-app-region: no-drag;
+}
+
+.window-control svg {
+  padding: 6px;
+  width: 28px;
+  height: 28px;
+  color: #3a3228;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+  box-sizing: border-box;
+  -webkit-app-region: no-drag;
+
+}
+
+.window-control svg:hover {
+  color: #d4894a;
+  background: #1a1612;
+}
+
+.window-control svg:last-child:hover {
+  color: #e06c6c;
+  background: #2a1212;
+}
+
+.tab-bar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tab-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tab-bar::-webkit-scrollbar-thumb {
+  background: #2a2420;
+  border-radius: 2px;
+}
+
+.tab-bar::-webkit-scrollbar-thumb:hover {
+  background: #d4894a;
 }

@@ -3,9 +3,13 @@ import "./App.css";
 import Editor from "@monaco-editor/react";
 import "@fontsource/jetbrains-mono";
 import { BaseDirectory, writeTextFile, readTextFile, exists, mkdir } from "@tauri-apps/plugin-fs";
+import { X, Minimize, Expand } from "lucide-react";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 
 const TABS_META_FILE = "aether/tabs.json";
 const TEMP_DIR = "aether/temp";
+
+const appWindow = getCurrentWindow();
 
 const caretTheme = {
   base: "vs-dark",
@@ -76,6 +80,10 @@ function App() {
   const [contents, setContents] = useState({});
   const [loaded, setLoaded] = useState(false);
   const saveTimer = useRef({});
+
+  async function minmize() { await appWindow.minimize(); };
+  async function maximize() { await appWindow.toggleMaximize(); };
+  async function close() { await appWindow.close(); }
 
   // load tabs on startup
   useEffect(() => {
@@ -150,19 +158,27 @@ function App() {
   return (
     <div className="shell">
       <div className="editor-shell">
-        <div className="tab-bar">
-          {tabs.map(tab => (
-            <div
-              key={tab.id}
-              className={`tab ${tab.id === activeTab ? "active" : ""}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              <span className="tab-name">{tab.name}</span>
-              {!tab.saved && <span className="tab-dot" />}
-              <span className="tab-close" onClick={(e) => closeTab(e, tab.id)}>×</span>
-            </div>
-          ))}
-          <div className="tab-add" onClick={addTab}>+</div>
+        <div className="top-bar" data-tauri-drag-region>
+          <div className="tab-bar">
+            {tabs.map(tab => (
+              <div
+                key={tab.id}
+                className={`tab ${tab.id === activeTab ? "active" : ""}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {!tab.saved && <span className="tab-dot" />}
+                <span className="tab-name">{tab.name}</span>
+                <span className="tab-close" onClick={(e) => closeTab(e, tab.id)}>×</span>
+              </div>
+            ))}
+            <div className="tab-add" onClick={addTab}>+</div>
+          </div>
+
+          <div className="window-control">
+              <Minimize size={16} onClick={minmize} />
+              <Expand size={16} onClick={maximize} />
+              <X size={16} onClick={close} />
+          </div>
         </div>
         {active ? (
           <Editor
